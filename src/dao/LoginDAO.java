@@ -1,13 +1,9 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import entity.DadosConta;
 import entity.Usuario;
@@ -15,37 +11,28 @@ import entity.Usuario;
 public class LoginDAO {
 
 	public static boolean validar(String agencia, String conta, String senha) {
-		Connection con = null;
-		PreparedStatement ps = null;
-
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("");
+		EntityManager em = factory.createEntityManager();
 		try {
-			con = FabricaDeConexoes.getConnection();
-			ps = con.prepareStatement("Select uname, password from Users where uname = ? and password = ?");
-			ps.setString(1, agencia);
-			ps.setString(2, conta);
-			ps.setString(3, senha);
-
-			ResultSet rs = ps.executeQuery();
-
-			if (rs.next()) {
-				// result found, means valid inputs
+			Query query = em.createQuery("select u from Usuario where " + "u.agencia = :agencia and u.conta= :conta "
+					+ "and u.senha = :senha");
+			Usuario u = (Usuario) query.getResultList();
+			if (u != null) {
 				return true;
 			}
-		} catch (SQLException ex) {
-			System.out.println("Login error -->" + ex.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
-		} finally {
-			FabricaDeConexoes.close(con);
 		}
 		return false;
 	}
 
 	public static Usuario getUsuario(DadosConta contaUsuario) {
-		EntityManagerFactory factory = Persistence.
-				createEntityManagerFactory("");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("");
 		EntityManager em = factory.createEntityManager();
-		em.find(Usuario.class, contaUsuario);
-		
-		return null;
+		Usuario u = em.find(Usuario.class, contaUsuario);
+		factory.close();
+		em.close();
+		return u;
 	}
 }
