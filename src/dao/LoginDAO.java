@@ -5,6 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import entity.DadosConta;
+import entity.Usuario;
+
 public class LoginDAO {
 
 	public static boolean validar(String agencia, String conta, String senha) {
@@ -31,5 +38,14 @@ public class LoginDAO {
 			FabricaDeConexoes.close(con);
 		}
 		return false;
+	}
+
+	public static Usuario getUsuario(DadosConta contaUsuario) {
+		EntityManagerFactory factory = Persistence.
+				createEntityManagerFactory("");
+		EntityManager em = factory.createEntityManager();
+		em.find(Usuario.class, contaUsuario);
+		
+		return null;
 	}
 }

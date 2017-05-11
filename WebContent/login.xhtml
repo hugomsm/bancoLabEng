@@ -9,17 +9,17 @@
 	<h:form>
 		<h3>JSF Login Logout</h3>
 		<h:outputText value="Agência" />
-		<h:inputText id="agencia" value="#{loginMB.login.agencia}"></h:inputText>
+		<h:inputText id="agencia" value="#{loginMB.usuarioAtual.conta.contaUsuario.agencia}"></h:inputText>
 
 		<h:outputText value="Conta" />
-		<h:inputText id="conta" value="#{loginMB.login.agencia}"></h:inputText>
+		<h:inputText id="conta" value="#{loginMB.usuarioAtual.conta.contaUsuario.conta}"></h:inputText>
 		
 		
 		<h:outputText value="Password" />
-		<h:inputSecret id="password" value="#{loginMB.login.senha}"></h:inputSecret>
+		<h:inputSecret id="password" value="#{loginMB.usuarioAtual.conta.senha}"></h:inputSecret>
 
 		
-		<h:commandButton action="#{loginMB.validarLogin}"
+		<h:commandButton action="#{loginMB.logar}"
 			value="Login"></h:commandButton>
 	</h:form>
 </h:body>

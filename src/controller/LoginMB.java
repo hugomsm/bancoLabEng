@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import dao.LoginDAO;
-import entity.Login;
+import entity.Usuario;
 
 @SessionScoped
 @ManagedBean
@@ -16,31 +16,41 @@ public class LoginMB implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -7719188177432584423L;
-	
-	private Login login = new Login();
+
+	private Usuario usuarioAtual = new Usuario();
 
 	/**
-	 * @return the login
+	 * @return the usuarioAtual
 	 */
-	public Login getLogin() {
-		return login;
+	public Usuario getUsuarioAtual() {
+		return usuarioAtual;
 	}
 
 	/**
-	 * @param login the login to set
+	 * @param usuarioAtual
+	 *            the usuarioAtual to set
 	 */
-	public void setLogin(Login login) {
-		this.login = login;
+	public void setUsuarioAtual(Usuario usuarioAtual) {
+		this.usuarioAtual = usuarioAtual;
 	}
-	
-	public String validarLogin(){
-		boolean validado = LoginDAO.validar(login.getAgencia(), login.getConta(), login.getSenha());
-		if (validado){
-			return "conta";
-		} else {
-			return "erro";
+
+	public String logar() {
+		String pagina = "login";
+		
+		if (LoginDAO.validar(usuarioAtual.getConta().getContaUsuario().getAgencia(), 
+				usuarioAtual.getConta().getContaUsuario().getConta(),
+				usuarioAtual.getConta().getSenha())){
+			pagina = "quarto?faces-redirect=true";
+			usuarioAtual = LoginDAO.getUsuario(usuarioAtual.getConta().getContaUsuario());
 		}
+		
+		return pagina;
+
 	}
 
-	
+	public String sair() {
+		usuarioAtual = null;
+		return "login?faces-redirect=true";
+	}
+
 }
