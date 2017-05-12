@@ -11,11 +11,14 @@ import entity.Usuario;
 public class LoginDAO {
 
 	public static boolean validar(String agencia, String conta, String senha) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
 		EntityManager em = factory.createEntityManager();
 		try {
 			Query query = em.createQuery("select u from Usuario where " + "u.agencia = :agencia and u.conta= :conta "
 					+ "and u.senha = :senha");
+			query.setParameter("agencia", agencia);
+			query.setParameter("conta", conta);
+			query.setParameter("senha", senha);
 			Usuario u = (Usuario) query.getResultList();
 			if (u != null) {
 				return true;
@@ -27,7 +30,7 @@ public class LoginDAO {
 	}
 
 	public static Usuario getUsuario(DadosConta contaUsuario) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
 		EntityManager em = factory.createEntityManager();
 		Usuario u = em.find(Usuario.class, contaUsuario);
 		factory.close();

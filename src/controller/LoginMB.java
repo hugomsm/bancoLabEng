@@ -40,7 +40,7 @@ public class LoginMB implements Serializable {
 		if (LoginDAO.validar(usuarioAtual.getConta().getContaUsuario().getAgencia(), 
 				usuarioAtual.getConta().getContaUsuario().getConta(),
 				usuarioAtual.getConta().getSenha())){
-			pagina = "quarto?faces-redirect=true";
+			pagina = "conta?faces-redirect=true";
 			usuarioAtual = LoginDAO.getUsuario(usuarioAtual.getConta().getContaUsuario());
 		}
 		

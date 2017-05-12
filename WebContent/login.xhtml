@@ -3,24 +3,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-	<title>login</title>
+	<title>Login Banco</title>
 </h:head>
 <h:body>
 	<h:form>
-		<h3>JSF Login Logout</h3>
-		<h:outputText value="Agência" />
+		<h3>Banco</h3>
+		<h:outputText value="Agência" required="true" requiredMessage="Digite sua Agência"/>
 		<h:inputText id="agencia" value="#{loginMB.usuarioAtual.conta.contaUsuario.agencia}"></h:inputText>
 
-		<h:outputText value="Conta" />
+		<h:outputText value="Conta" required="true" requiredMessage="Digite sua Conta"/>
 		<h:inputText id="conta" value="#{loginMB.usuarioAtual.conta.contaUsuario.conta}"></h:inputText>
 		
 		
-		<h:outputText value="Password" />
+		<h:outputText value="Password" required="true" requiredMessage="Digite sua Senha"/>
 		<h:inputSecret id="password" value="#{loginMB.usuarioAtual.conta.senha}"></h:inputSecret>
 
-		
 		<h:commandButton action="#{loginMB.logar}"
 			value="Login"></h:commandButton>
 	</h:form>
+	<br/>
+	<h:link value="Cadastrar Conta" outcome="cadastro" />
+	
+	
 </h:body>
 </html>

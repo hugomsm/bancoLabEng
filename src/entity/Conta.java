@@ -65,11 +65,10 @@ public class Conta {
 	}
 
 	/**
-	 * @param contaUsuario the contaUsuario to set
+	 * @param contaUsuario
+	 *            the contaUsuario to set
 	 */
 	public void setContaUsuario(DadosConta contaUsuario) {
 		this.contaUsuario = contaUsuario;
 	}
-	
-	
 }
