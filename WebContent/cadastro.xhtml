@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -14,33 +13,32 @@
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Agencia:" />
 			<h:inputText
-				value="#{usuarioMB.novoUsuario.conta.contaUsuario.gerarAgencia}"
+				value="#{usuarioMB.novoUsuario.conta.contaUsuario.agencia}"
 				disabled="true" />
 
 			<h:outputLabel value="Conta:" />
 			<h:inputText
-				value="#{usuarioMB.novoUsuario.conta.contaUsuario.gerarConta}"
+				value="#{usuarioMB.novoUsuario.conta.contaUsuario.conta}"
 				disabled="true" />
 
-			<h:outputLabel value="Nome:" required="true"
-				requiredMessage="Digite seu nome" />
+			<h:outputText value="Senha"/>
+			<h:inputSecret id="password"
+				value="#{usuarioMB.novoUsuario.conta.senha}"></h:inputSecret>
+
+			<h:outputLabel value="Nome:" />
 			<h:inputText value="#{usuarioMB.novoUsuario.nome}" />
 
-			<h:outputLabel value="CPF:" required="true"
-				requiredMessage="Digite seu CPF" />
+			<h:outputLabel value="CPF:" />
 			<h:inputText value="#{usuarioMB.novoUsuario.cpf}" />
 
-			<h:outputLabel value="Logradouro:" required="true"
-				requiredMessage="Digite seu logradouro" />
+			<h:outputLabel value="Logradouro:" />
 			<h:inputText value="#{usuarioMB.novoUsuario.logradouro}" />
 
 			<h:outputLabel value="Número:" />
-			<h:inputText value="#{usuarioMB.novoUsuario.numero}" required="true"
-				requiredMessage="Digite o número de sua residência" />
+			<h:inputText value="#{usuarioMB.novoUsuario.numero}" />
 
 			<h:outputLabel value="CEP:" />
-			<h:inputText value="#{usuarioMB.novoUsuario.cep}" required="true"
-				requiredMessage="Digite seu CEP" />
+			<h:inputText value="#{usuarioMB.novoUsuario.cep}" />
 
 			<h:commandButton value="Salvar" action="#{usuarioMB.salvar}" />
 			<h:commandButton value="Cancelar" action="login" />

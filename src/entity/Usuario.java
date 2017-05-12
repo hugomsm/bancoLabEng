@@ -1,8 +1,12 @@
 package entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity
 public class Usuario {
@@ -12,8 +16,7 @@ public class Usuario {
 	private String logradouro;
 	private String numero;
 	private String cep;
-	@OneToOne
-	private Conta conta;
+	private Conta conta = new Conta();
 
 	/**
 	 * @return the nome
@@ -94,6 +97,7 @@ public class Usuario {
 	/**
 	 * @return the conta
 	 */
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public Conta getConta() {
 		return conta;
 	}
@@ -102,6 +106,7 @@ public class Usuario {
 	 * @param conta
 	 *            the conta to set
 	 */
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	public void setConta(Conta conta) {
 		this.conta = conta;
 	}

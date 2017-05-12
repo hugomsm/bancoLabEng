@@ -2,16 +2,20 @@ package entity;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 public class Conta {
 
-	@EmbeddedId
-	private DadosConta contaUsuario;
+	private DadosConta contaUsuario = new DadosConta();
 	private String senha;
 	private String tipoConta;
 	private double saldo;
-
+	private Usuario usuario;
+	
 	/**
 	 * @return the senha
 	 */
@@ -60,6 +64,7 @@ public class Conta {
 	/**
 	 * @return the contaUsuario
 	 */
+	@EmbeddedId
 	public DadosConta getContaUsuario() {
 		return contaUsuario;
 	}
@@ -70,5 +75,20 @@ public class Conta {
 	 */
 	public void setContaUsuario(DadosConta contaUsuario) {
 		this.contaUsuario = contaUsuario;
+	}
+
+	/**
+	 * @return the usuario
+	 */
+	@OneToOne(fetch = FetchType.LAZY)
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	/**
+	 * @param usuario the usuario to set
+	 */
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }
