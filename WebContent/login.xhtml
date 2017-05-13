@@ -13,18 +13,18 @@
 			<h:outputText value="Agência" required="true"
 				requiredMessage="Digite sua Agência" />
 			<h:inputText id="agencia"
-				value="#{loginMB.usuarioAtual.conta.contaUsuario.agencia}"></h:inputText>
+				value="#{contaMB.conta.contaUsuario.agencia}"></h:inputText>
 
 			<h:outputText value="Conta" required="true"
 				requiredMessage="Digite sua Conta" />
 			<h:inputText id="conta"
-				value="#{loginMB.usuarioAtual.conta.contaUsuario.conta}"></h:inputText>
+				value="#{contaMB.conta.contaUsuario.conta}"></h:inputText>
 
 
 			<h:outputText value="Senha" required="true"
 				requiredMessage="Digite sua Senha" />
 			<h:inputSecret id="password"
-				value="#{loginMB.usuarioAtual.conta.senha}"></h:inputSecret>
+				value="#{contaMB.conta.senha}"></h:inputSecret>
 
 			<h:commandButton action="#{loginMB.logar}" value="Login"></h:commandButton>
 		</h:panelGrid>

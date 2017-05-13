@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import entity.Conta;
 import entity.DadosConta;
 import entity.Usuario;
 
@@ -14,13 +15,13 @@ public class LoginDAO {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
 		EntityManager em = factory.createEntityManager();
 		try {
-			Query query = em.createQuery("select u from Usuario where " + "u.agencia = :agencia and u.conta= :conta "
-					+ "and u.senha = :senha");
+			Query query = em.createQuery("select c from conta where " + "agencia = :agencia and conta= :conta "
+					+ "and senha = :senha");
 			query.setParameter("agencia", agencia);
 			query.setParameter("conta", conta);
 			query.setParameter("senha", senha);
-			Usuario u = (Usuario) query.getResultList();
-			if (u != null) {
+			Conta c = (Conta) query.getResultList();
+			if (c != null) {
 				return true;
 			}
 		} catch (Exception e) {
@@ -29,12 +30,12 @@ public class LoginDAO {
 		return false;
 	}
 
-	public static Usuario getUsuario(DadosConta contaUsuario) {
+	public static Conta getConta(DadosConta contaUsuario) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
 		EntityManager em = factory.createEntityManager();
-		Usuario u = em.find(Usuario.class, contaUsuario);
+		Conta c = em.find(Conta.class, contaUsuario);
 		factory.close();
 		em.close();
-		return u;
+		return c;
 	}
 }

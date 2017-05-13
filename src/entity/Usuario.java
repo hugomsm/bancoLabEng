@@ -16,7 +16,7 @@ public class Usuario {
 	private String logradouro;
 	private String numero;
 	private String cep;
-	private Conta conta = new Conta();
+	//private Conta conta = new Conta();
 
 	/**
 	 * @return the nome
@@ -94,21 +94,19 @@ public class Usuario {
 		this.cep = cep;
 	}
 
-	/**
-	 * @return the conta
+	/*
+	 * 
+	 * @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario") public Conta
+	 * getConta() { return conta; }
 	 */
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	public Conta getConta() {
-		return conta;
-	}
-
-	/**
-	 * @param conta
-	 *            the conta to set
-	 */
-	@Cascade(org.hibernate.annotations.CascadeType.ALL)
-	public void setConta(Conta conta) {
-		this.conta = conta;
-	}
+	
+//	/**
+//	 * @param conta
+//	 *            the conta to set
+//	 */
+//	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+//	public void setConta(Conta conta) {
+//		this.conta = conta;
+//	}
 
 }

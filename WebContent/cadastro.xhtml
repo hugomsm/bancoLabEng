@@ -13,17 +13,17 @@
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Agencia:" />
 			<h:inputText
-				value="#{usuarioMB.novoUsuario.conta.contaUsuario.agencia}"
+				value="#{contaMB.conta.contaUsuario.agencia}"
 				disabled="true" />
 
 			<h:outputLabel value="Conta:" />
 			<h:inputText
-				value="#{usuarioMB.novoUsuario.conta.contaUsuario.conta}"
+				value="#{contaMB.conta.contaUsuario.conta}"
 				disabled="true" />
 
 			<h:outputText value="Senha"/>
 			<h:inputSecret id="password"
-				value="#{usuarioMB.novoUsuario.conta.senha}"></h:inputSecret>
+				value="#{contaMB.conta.senha}"></h:inputSecret>
 
 			<h:outputLabel value="Nome:" />
 			<h:inputText value="#{usuarioMB.novoUsuario.nome}" />

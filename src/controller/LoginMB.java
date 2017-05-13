@@ -34,20 +34,7 @@ public class LoginMB implements Serializable {
 		this.usuarioAtual = usuarioAtual;
 	}
 
-	public String logar() {
-		String pagina = "login";
-		
-		if (LoginDAO.validar(usuarioAtual.getConta().getContaUsuario().getAgencia(), 
-				usuarioAtual.getConta().getContaUsuario().getConta(),
-				usuarioAtual.getConta().getSenha())){
-			pagina = "conta?faces-redirect=true";
-			usuarioAtual = LoginDAO.getUsuario(usuarioAtual.getConta().getContaUsuario());
-		}
-		
-		return pagina;
-
-	}
-
+ 
 	public String sair() {
 		usuarioAtual = null;
 		return "login?faces-redirect=true";
