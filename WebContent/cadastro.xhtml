@@ -10,12 +10,10 @@
 <h:body>
 	<h1>Cadastro de Conta</h1>
 	<h:form>
-
 		<h:selectOneRadio value="#{contaMB.conta.tipoConta}">
 			<f:selectItem itemValue="Conta Corrente" itemLabel="Conta Corrente" />
 			<f:selectItem itemValue="Conta Poupança" itemLabel="Conta Poupança" />
 		</h:selectOneRadio>
-
 		<h:panelGrid columns="2">
 
 			<h:outputLabel value="Agencia:" />
@@ -43,7 +41,6 @@
 
 			<h:outputLabel value="CEP:" />
 			<h:inputText value="#{contaMB.conta.usuario.cep}" />
-
 			<h:commandButton value="Salvar" action="#{contaMB.salvar}" />
 			<h:commandButton value="Cancelar" action="login" />
 		</h:panelGrid>

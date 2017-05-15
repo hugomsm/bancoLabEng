@@ -15,11 +15,11 @@ public class LoginDAO {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
 		EntityManager em = factory.createEntityManager();
 		try {
-			Query query = em.createQuery("select c from conta where " + "agencia = :agencia and conta= :conta "
-					+ "and senha = :senha");
-			query.setParameter("agencia", agencia);
-			query.setParameter("conta", conta);
-			query.setParameter("senha", senha);
+			Query query = em.createQuery("select c from conta where " + "agencia = :ag and conta = :ct "
+					+ "and senha = :sh");
+			query.setParameter("ag", agencia);
+			query.setParameter("ct", conta);
+			query.setParameter("sh", senha);
 			Conta c = (Conta) query.getResultList();
 			if (c != null) {
 				return true;
