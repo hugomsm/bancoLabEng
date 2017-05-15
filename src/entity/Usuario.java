@@ -1,17 +1,13 @@
 package entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.Cascade;
 
 @Entity
 public class Usuario {
 
 	private String nome;
+	@Id
 	private String cpf;
 	private String logradouro;
 	private String numero;
@@ -36,7 +32,6 @@ public class Usuario {
 	/**
 	 * @return the cpf
 	 */
-	@Id
 	public String getCpf() {
 		return cpf;
 	}

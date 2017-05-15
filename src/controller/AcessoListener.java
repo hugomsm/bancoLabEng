@@ -6,6 +6,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
+
+import entity.Conta;
 import entity.Usuario;
 
 public class AcessoListener implements PhaseListener {
@@ -17,8 +19,8 @@ public class AcessoListener implements PhaseListener {
 		String pagina = fc.getViewRoot().getViewId();
 		if (!"/login.xhtml".equals(pagina)) {
 			Application app = fc.getApplication();
-			Usuario user = app.evaluateExpressionGet(fc, "#{loginMB.usuarioAtual}", Usuario.class);
-			if (user == null) {
+			Conta c = app.evaluateExpressionGet(fc, "#{contaMB.conta}", Conta.class);
+			if (c == null) {
 				NavigationHandler nav = app.getNavigationHandler();
 				nav.handleNavigation(fc, null, "login?faces-redirect=true");
 				fc.renderResponse();

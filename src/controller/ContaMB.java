@@ -5,7 +5,6 @@ import javax.faces.bean.RequestScoped;
 
 import dao.ContaDAO;
 import dao.LoginDAO;
-import dao.UsuarioDAO;
 import entity.Conta;
 
 @RequestScoped
@@ -42,8 +41,9 @@ public class ContaMB {
 
 	}
 	
-	public void salvar(){
+	public String salvar(){
 		ContaDAO.adicionar(conta);
+		return "login";
 	}
 
 }

@@ -3,7 +3,11 @@ package entity;
 import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+//<f:actionListener binding="#{contaMB.salvar()}" />
+//</h:commandButton>
+
 
 @Entity
 public class Conta {
@@ -12,7 +16,7 @@ public class Conta {
 	private String senha;
 	private String tipoConta;
 	private double saldo;
-	private Usuario usuario;
+	private Usuario usuario = new Usuario();
 
 	/**
 	 * @return the senha
@@ -79,6 +83,7 @@ public class Conta {
 	 * @return the usuario
 	 */
 	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="USER_CPF", unique= true, nullable=false, insertable=true, updatable=true)
 	public Usuario getUsuario() {
 		return usuario;
 	}

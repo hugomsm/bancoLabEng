@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import dao.ContaDAO;
 import dao.UsuarioDAO;
 import entity.Usuario;
 
@@ -35,7 +34,7 @@ public class UsuarioMB implements Serializable {
 		this.novoUsuario = novoUsuario;
 	}
 
-	public String salvar() {
+	public String salvar(){
 		UsuarioDAO.adicionar(novoUsuario);
 		return "login";
 	}

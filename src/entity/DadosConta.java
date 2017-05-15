@@ -7,7 +7,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.Id;
 
 @Embeddable
-public class DadosConta implements Serializable{
+public class DadosConta implements Serializable {
 
 	/**
 	 * 
@@ -20,6 +20,7 @@ public class DadosConta implements Serializable{
 	 * @return the agencia
 	 */
 	public String getAgencia() {
+		
 		if (agencia == null) {
 			Random r = new Random();
 			int i = r.nextInt(89999) + 10000;

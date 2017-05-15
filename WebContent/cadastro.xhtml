@@ -10,37 +10,41 @@
 <h:body>
 	<h1>Cadastro de Conta</h1>
 	<h:form>
+
+		<h:selectOneRadio value="#{contaMB.conta.tipoConta}">
+			<f:selectItem itemValue="Conta Corrente" itemLabel="Conta Corrente" />
+			<f:selectItem itemValue="Conta Poupança" itemLabel="Conta Poupança" />
+		</h:selectOneRadio>
+
 		<h:panelGrid columns="2">
+
 			<h:outputLabel value="Agencia:" />
-			<h:inputText
-				value="#{contaMB.conta.contaUsuario.agencia}"
+			<h:inputText value="#{contaMB.conta.contaUsuario.agencia}"
 				disabled="true" />
 
 			<h:outputLabel value="Conta:" />
-			<h:inputText
-				value="#{contaMB.conta.contaUsuario.conta}"
+			<h:inputText value="#{contaMB.conta.contaUsuario.conta}"
 				disabled="true" />
 
-			<h:outputText value="Senha"/>
-			<h:inputSecret id="password"
-				value="#{contaMB.conta.senha}"></h:inputSecret>
+			<h:outputText value="Senha" />
+			<h:inputSecret id="password" value="#{contaMB.conta.senha}"></h:inputSecret>
 
 			<h:outputLabel value="Nome:" />
-			<h:inputText value="#{usuarioMB.novoUsuario.nome}" />
+			<h:inputText value="#{contaMB.conta.usuario.nome}" />
 
 			<h:outputLabel value="CPF:" />
-			<h:inputText value="#{usuarioMB.novoUsuario.cpf}" />
+			<h:inputText value="#{contaMB.conta.usuario.cpf}" />
 
 			<h:outputLabel value="Logradouro:" />
-			<h:inputText value="#{usuarioMB.novoUsuario.logradouro}" />
+			<h:inputText value="#{contaMB.conta.usuario.logradouro}" />
 
 			<h:outputLabel value="Número:" />
-			<h:inputText value="#{usuarioMB.novoUsuario.numero}" />
+			<h:inputText value="#{contaMB.conta.usuario.numero}" />
 
 			<h:outputLabel value="CEP:" />
-			<h:inputText value="#{usuarioMB.novoUsuario.cep}" />
+			<h:inputText value="#{contaMB.conta.usuario.cep}" />
 
-			<h:commandButton value="Salvar" action="#{usuarioMB.salvar}" />
+			<h:commandButton value="Salvar" action="#{contaMB.salvar}" />
 			<h:commandButton value="Cancelar" action="login" />
 		</h:panelGrid>
 	</h:form>
