@@ -2,12 +2,13 @@ package controller;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import dao.ContaDAO;
 import dao.LoginDAO;
 import entity.Conta;
 
-@RequestScoped
+@SessionScoped
 @ManagedBean
 public class ContaMB {
 
