@@ -6,11 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 //<f:actionListener binding="#{contaMB.salvar()}" />
 //</h:commandButton>
 
 
 @Entity
+@Table(name="conta")
 public class Conta {
 
 	private DadosConta contaUsuario = new DadosConta();

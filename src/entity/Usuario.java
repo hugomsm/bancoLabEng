@@ -2,8 +2,10 @@ package entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="usuario")
 public class Usuario {
 
 	private String nome;
@@ -12,7 +14,6 @@ public class Usuario {
 	private String logradouro;
 	private String numero;
 	private String cep;
-	//private Conta conta = new Conta();
 
 	/**
 	 * @return the nome

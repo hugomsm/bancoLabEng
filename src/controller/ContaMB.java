@@ -31,11 +31,12 @@ public class ContaMB {
 
 	public String logar() {
 		String pagina = "login";
-
-		if (LoginDAO.validar(conta.getContaUsuario().getAgencia(), conta.getContaUsuario().getConta(),
-				conta.getSenha())) {
+		conta = LoginDAO.validar(conta.getContaUsuario().getAgencia(), conta.getContaUsuario().getConta(),
+				conta.getSenha());
+		if (conta != null) {
 			pagina = "conta?faces-redirect=true";
-			conta = LoginDAO.getConta(conta.getContaUsuario());
+		} else {
+			pagina = "login";
 		}
 
 		return pagina;
@@ -45,6 +46,12 @@ public class ContaMB {
 	public String salvar(){
 		ContaDAO.adicionar(conta);
 		return "login";
+	}
+	
+	public String sair(){
+		conta = null;
+		return "login";
+		
 	}
 
 }

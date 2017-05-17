@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -11,31 +13,23 @@ import entity.Usuario;
 
 public class LoginDAO {
 
-	public static boolean validar(String agencia, String conta, String senha) {
+	public static Conta validar(String agencia, String conta, String senha) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
 		EntityManager em = factory.createEntityManager();
 		try {
-			Query query = em.createQuery("select c from conta where " + "agencia = :ag and conta = :ct "
+			Query query = em.createQuery("select c from Conta c where " + "agencia = :ag and conta = :ct "
 					+ "and senha = :sh");
 			query.setParameter("ag", agencia);
 			query.setParameter("ct", conta);
 			query.setParameter("sh", senha);
-			Conta c = (Conta) query.getResultList();
-			if (c != null) {
-				return true;
+			List<Conta> contas = query.getResultList();
+			if (contas != null && contas.size()>0) {
+				return contas.get(0);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return false;
+		return null;
 	}
 
-	public static Conta getConta(DadosConta contaUsuario) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
-		EntityManager em = factory.createEntityManager();
-		Conta c = em.find(Conta.class, contaUsuario);
-		factory.close();
-		em.close();
-		return c;
-	}
 }
