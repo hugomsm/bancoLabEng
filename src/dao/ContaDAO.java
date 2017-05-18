@@ -1,8 +1,11 @@
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import entity.Conta;
 
@@ -16,5 +19,24 @@ public class ContaDAO {
 		em.getTransaction().commit();
 		em.clear();
 		factory.close();
+	}
+	
+	public static Conta validar(String agencia, String conta, String senha) {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
+		EntityManager em = factory.createEntityManager();
+		try {
+			Query query = em.createQuery("select c from Conta c where " + "agencia = :ag and conta = :ct "
+					+ "and senha = :sh");
+			query.setParameter("ag", agencia);
+			query.setParameter("ct", conta);
+			query.setParameter("sh", senha);
+			List<Conta> contas = query.getResultList();
+			if (contas != null && contas.size()>0) {
+				return contas.get(0);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

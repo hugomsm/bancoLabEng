@@ -1,36 +1,36 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Login Banco</title>
 </h:head>
 <h:body>
 	<h3>Banco</h3>
 	<h:form>
-		<h:panelGrid columns="2">
+		<p:panelGrid columns="2">
 
-			<h:outputText value="Agência" required="true"
-				requiredMessage="Digite sua Agência" />
-			<h:inputText id="agencia"
-				value="#{contaMB.conta.contaUsuario.agencia}"></h:inputText>
+			<p:outputLabel for="inputAgencia" value="Agência"
+				indicateRequired="true" requiredMessage="Digite sua Agência" />
+			<p:inputText id="inputAgencia"
+				value="#{contaMB.conta.contaUsuario.agencia}"></p:inputText>
 
-			<h:outputText value="Conta" required="true"
+			<p:outputLabel for="inputConta" value="Conta" indicateRequired="true"
 				requiredMessage="Digite sua Conta" />
-			<h:inputText id="conta"
-				value="#{contaMB.conta.contaUsuario.conta}"></h:inputText>
+			<p:inputText id="inputConta"
+				value="#{contaMB.conta.contaUsuario.conta}"></p:inputText>
 
 
-			<h:outputText value="Senha" required="true"
+			<p:outputLabel for="inputSenha" value="Senha" indicateRequired="true"
 				requiredMessage="Digite sua Senha" />
-			<h:inputSecret id="password"
-				value="#{contaMB.conta.senha}"></h:inputSecret>
-
-			<h:commandButton action="#{contaMB.logar}" value="Login"></h:commandButton>
-		</h:panelGrid>
+			<p:password id="inputSenha" value="#{contaMB.conta.senha}" />
+		</p:panelGrid>
 	</h:form>
 	<br />
-	<h:link value="Cadastrar Conta" outcome="cadastro" />
+	<p:commandButton action="#{contaMB.logar}" value="Login"></p:commandButton>
+	<p:commandLink value="Cadastrar Conta" action="cadastro" />
 
 
 </h:body>

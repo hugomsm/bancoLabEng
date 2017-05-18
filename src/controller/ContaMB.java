@@ -1,11 +1,9 @@
 package controller;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 import dao.ContaDAO;
-import dao.LoginDAO;
 import entity.Conta;
 
 @SessionScoped
@@ -31,7 +29,7 @@ public class ContaMB {
 
 	public String logar() {
 		String pagina = "login";
-		conta = LoginDAO.validar(conta.getContaUsuario().getAgencia(), conta.getContaUsuario().getConta(),
+		conta = ContaDAO.validar(conta.getContaUsuario().getAgencia(), conta.getContaUsuario().getConta(),
 				conta.getSenha());
 		if (conta != null) {
 			pagina = "conta?faces-redirect=true";

@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,6 +13,10 @@ public class Usuario {
 	private String nome;
 	@Id
 	private String cpf;
+	private String rg;
+	private Date dataNasc;
+	private String telefone;
+	private String email;
 	private String logradouro;
 	private String numero;
 	private String cep;
@@ -43,6 +49,62 @@ public class Usuario {
 	 */
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	/**
+	 * @return the rg
+	 */
+	public String getRg() {
+		return rg;
+	}
+
+	/**
+	 * @param rg the rg to set
+	 */
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
+	/**
+	 * @return the dataNasc
+	 */
+	public Date getDataNasc() {
+		return dataNasc;
+	}
+
+	/**
+	 * @param dataNasc the dataNasc to set
+	 */
+	public void setDataNasc(Date dataNasc) {
+		this.dataNasc = dataNasc;
+	}
+
+	/**
+	 * @return the telefone
+	 */
+	public String getTelefone() {
+		return telefone;
+	}
+
+	/**
+	 * @param telefone the telefone to set
+	 */
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	/**

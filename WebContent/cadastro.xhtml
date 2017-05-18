@@ -2,49 +2,84 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Cadastro de Conta</title>
 </h:head>
 <h:body>
 	<h1>Cadastro de Conta</h1>
+	<p:separator />
 	<h:form>
-		<h:selectOneRadio value="#{contaMB.conta.tipoConta}">
+		<h3>Dados de Conta</h3>
+		<p:selectOneRadio value="#{contaMB.conta.tipoConta}">
 			<f:selectItem itemValue="Conta Corrente" itemLabel="Conta Corrente" />
 			<f:selectItem itemValue="Conta Poupança" itemLabel="Conta Poupança" />
-		</h:selectOneRadio>
-		<h:panelGrid columns="2">
+		</p:selectOneRadio>
+		<br />
+		<p:panelGrid columns="4">
 
-			<h:outputLabel value="Agencia:" />
-			<h:inputText value="#{contaMB.conta.contaUsuario.agencia}"
-				disabled="true" />
+			<p:outputLabel for="inputAgencia" value="Agencia:" />
+			<p:inputText id="inputAgencia"
+				value="#{contaMB.conta.contaUsuario.agencia}" readonly="true" />
 
-			<h:outputLabel value="Conta:" />
-			<h:inputText value="#{contaMB.conta.contaUsuario.conta}"
-				disabled="true" />
+			<p:outputLabel for="inputConta" value="Conta:"
+				indicateRequired="true" />
+			<p:inputText id="inputConta"
+				value="#{contaMB.conta.contaUsuario.conta}" readonly="true" />
 
-			<h:outputText value="Senha" />
-			<h:inputSecret id="password" value="#{contaMB.conta.senha}">
-			</h:inputSecret>
+			<p:outputLabel for="inputSenha" value="Senha" indicateRequired="true" />
+			<p:password id="inputSenha" value="#{contaMB.conta.senha}"
+				feedback="true" inline="true" promptLabel="Digite sua senha"
+				weakLabel="Senha fraca" goodLabel="Senha média"
+				strongLabel="Senha forte" />
+		</p:panelGrid>
+		<p:separator />
+		<h3>Dados do Usuário</h3>
+		<p:panelGrid columns="4">
 
-			<h:outputLabel value="Nome:" />
-			<h:inputText value="#{contaMB.conta.usuario.nome}" />
+			<p:outputLabel for="inputNome" value="Nome:" indicateRequired="true" />
+			<p:inputText id="inputNome" value="#{contaMB.conta.usuario.nome}" />
 
-			<h:outputLabel value="CPF:" />
-			<h:inputText value="#{contaMB.conta.usuario.cpf}" />
+			<p:outputLabel for="inputCPF" value="CPF:" indicateRequired="true" />
+			<p:inputMask id="inputCPF" mask="999.999.999-99"
+				value="#{contaMB.conta.usuario.cpf}" />
 
-			<h:outputLabel value="Logradouro:" />
-			<h:inputText value="#{contaMB.conta.usuario.logradouro}" />
+			<p:outputLabel for="inputRG" value="RG:" indicateRequired="true" />
+			<p:inputMask id="inputRG" mask="99.999.999-9"
+				value="#{contaMB.conta.usuario.rg}" />
 
-			<h:outputLabel value="Número:" />
-			<h:inputText value="#{contaMB.conta.usuario.numero}" />
+			<p:outputLabel for="inputDataNasc" value="Data de Nascimento:"
+				indicateRequired="true" />
+			<p:calendar id="inputDataNasc" pattern="dd/MM/yyyy" navigator="true"
+				mask="true" value="#{contaMB.conta.usuario.dataNasc}" />
 
-			<h:outputLabel value="CEP:" />
-			<h:inputText value="#{contaMB.conta.usuario.cep}" />
-			<h:commandButton value="Salvar" action="#{contaMB.salvar}" />
-			<h:commandButton value="Cancelar" action="login" />
-		</h:panelGrid>
+			<p:outputLabel for="inputTelefone" value="Telefone:"
+				indicateRequired="true" />
+			<p:inputMask id="inputTelefone" mask="(99)9999-9999?9"
+				value="#{contaMB.conta.usuario.telefone}" />
+			<p:outputLabel for="inputEmail" value="Email:"
+				indicateRequired="false" />
+			<p:inputText id="inputEmail" value="#{contaMB.conta.usuario.email}" />
+
+			<p:outputLabel for="inputLogradouro" value="Endereço:"
+				indicateRequired="true" />
+			<p:inputText id="inputLogradouro"
+				value="#{contaMB.conta.usuario.logradouro}" />
+
+			<p:outputLabel for="inputNumero" value="Número:"
+				indicateRequired="true" />
+			<p:inputText id="inputNumero" value="#{contaMB.conta.usuario.numero}" />
+
+			<p:outputLabel for="inputCEP" value="CEP:" indicateRequired="true" />
+			<p:inputMask id="inputCEP" mask="99999-999"
+				value="#{contaMB.conta.usuario.cep}" />
+
+		</p:panelGrid>
+		<br />
+		<p:commandButton value="Salvar" action="#{contaMB.salvar}" />
+		<p:commandButton value="Cancelar" action="login" />
 	</h:form>
 </h:body>
 </html>

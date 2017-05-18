@@ -2,47 +2,46 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Sua Conta</title>
 </h:head>
 
 <h:body>
-	<h:outputLabel value="Bem vindo #{contaMB.conta.usuario.nome} !" />
+	<p:outputLabel value="Bem vindo #{contaMB.conta.usuario.nome} !" />
 	<br />
-	<h:outputLabel value="Saldo: #{contaMB.conta.saldo}" />
-	<br />
-	<h:outputLabel value="Histórico de Transações:" />
-	<br />
-	<h:dataTable id="items" value="#{transacaoMB.transacoes}" var="item">
-		<h:column>
+	<p:outputLabel value="Saldo: #{contaMB.conta.saldo}" />
+	<p:separator />
+	<p:outputLabel value="Histórico de Transações:" />
+	<p:dataTable id="items" emptyMessage="Nenhuma transação realizada" value="#{transacaoMB.transacoes}" var="item">
+		<p:column>
 			<f:facet name="header">
 				<h:outputText value="Data" />
 			</f:facet>
 			<h:outputText value="#{item.dataTransacao}" />
-		</h:column>
-		<h:column>
+		</p:column>
+		<p:column>
 			<f:facet name="header">
 				<h:outputText value="Tipo" />
 			</f:facet>
 			<h:outputText value="#{item.tipo}" />
-		</h:column>
-		<h:column>
+		</p:column>
+		<p:column>
 			<f:facet name="header">
 				<h:outputText value="Destino" />
 			</f:facet>
 			<h:outputText value="#{item.destino}" />
-		</h:column>
-		<h:column>
+		</p:column>
+		<p:column>
 			<f:facet name="header">
 				<h:outputText value="Valor" />
 			</f:facet>
 			<h:outputText value="#{item.valor}" />
-		</h:column>
-	</h:dataTable>
-	
-	<h:commandButton value="Realizar depósito" action="#{transacaoMB.depositar}"/>
-	<h:commandButton value="Realizar transferência" action="#{transacaoMB.transferir}"/>
-	<h:commandButton value="Sair" action="#{contaMB.sair}"/>
+		</p:column>
+	</p:dataTable>
+	<br />
+	<p:commandButton value="Realizar depósito" action="#{transacaoMB.depositar}"/>
+	<p:commandButton value="Realizar transferência" action="#{transacaoMB.transferir}"/>
 </h:body>
 </html>
