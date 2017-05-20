@@ -5,20 +5,40 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="usuario")
 public class Usuario {
-
+	@NotEmpty(message="Nome não pode ser vazio")
 	private String nome;
+	//@NotEmpty(message="O CPF deve possuir 11 caracteres")
+	//@Length(min=14,max=14)
 	@Id
 	private String cpf;
+	//@NotEmpty
+	//@Length(min=12,max=12, message="O RG deve possuir 9 caracteres")
 	private String rg;
+	//@Past(message="A data não pode ser futura")
 	private Date dataNasc;
+	//@NotEmpty
+	//@Length(min=13,max=14, message="O telefone deve possuir 10 ou 11 dígitos, incluindo DDD")
 	private String telefone;
+	//@Email
 	private String email;
+	//@NotEmpty
 	private String logradouro;
+	//@NotEmpty
+	//@Min(0)
 	private String numero;
+	//@NotEmpty
+	//@Length(min=9,max=9, message="O CEP deve possuir 8 caracteres")
 	private String cep;
 
 	/**

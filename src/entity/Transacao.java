@@ -3,6 +3,10 @@ package entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Transacao implements Serializable{
 
 	/**
@@ -11,7 +15,9 @@ public class Transacao implements Serializable{
 	private static final long serialVersionUID = -1443846886987337607L;
 	private Date dataTransacao;
 	private String tipo;
+	@Min(1)
 	private double valor;
+	@NotEmpty
 	private String destino;
 	
 	/**

@@ -9,6 +9,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 //<f:actionListener binding="#{contaMB.salvar()}" />
 //</h:commandButton>
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
@@ -24,6 +27,7 @@ public class Conta {
 	/**
 	 * @return the senha
 	 */
+	//@NotEmpty
 	public String getSenha() {
 		return senha;
 	}
@@ -39,6 +43,7 @@ public class Conta {
 	/**
 	 * @return the tipoConta
 	 */
+	//@NotEmpty
 	public String getTipoConta() {
 		return tipoConta;
 	}
