@@ -5,20 +5,38 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Past;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name="usuario")
+@Table(name = "usuario")
 public class Usuario {
-
+	@NotEmpty(message = "Nome não pode ser vazio")
 	private String nome;
+	@NotEmpty(message = "O CPF deve possuir 11 caracteres")
+	@Length(min = 14, max = 14)
 	@Id
 	private String cpf;
+	@NotEmpty
+	@Length(min = 12, max = 12, message = "O RG deve possuir 9 caracteres")
 	private String rg;
+	@Past(message = "A data não pode ser futura")
 	private Date dataNasc;
+	@NotEmpty
+	@Length(min = 13, max = 14, message = "O telefone deve possuir 10 ou 11 dígitos, incluindo DDD")
 	private String telefone;
+	@Email
 	private String email;
+	@NotEmpty
 	private String logradouro;
+	@NotEmpty
+	@Min(0)
 	private String numero;
+	@NotEmpty
+	@Length(min = 9, max = 9, message = "O CEP deve possuir 8 caracteres")
 	private String cep;
 
 	/**
@@ -59,7 +77,8 @@ public class Usuario {
 	}
 
 	/**
-	 * @param rg the rg to set
+	 * @param rg
+	 *            the rg to set
 	 */
 	public void setRg(String rg) {
 		this.rg = rg;
@@ -73,7 +92,8 @@ public class Usuario {
 	}
 
 	/**
-	 * @param dataNasc the dataNasc to set
+	 * @param dataNasc
+	 *            the dataNasc to set
 	 */
 	public void setDataNasc(Date dataNasc) {
 		this.dataNasc = dataNasc;
@@ -87,7 +107,8 @@ public class Usuario {
 	}
 
 	/**
-	 * @param telefone the telefone to set
+	 * @param telefone
+	 *            the telefone to set
 	 */
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
@@ -101,7 +122,8 @@ public class Usuario {
 	}
 
 	/**
-	 * @param email the email to set
+	 * @param email
+	 *            the email to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
@@ -151,20 +173,5 @@ public class Usuario {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-
-	/*
-	 * 
-	 * @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario") public Conta
-	 * getConta() { return conta; }
-	 */
-	
-//	/**
-//	 * @param conta
-//	 *            the conta to set
-//	 */
-//	@Cascade(org.hibernate.annotations.CascadeType.ALL)
-//	public void setConta(Conta conta) {
-//		this.conta = conta;
-//	}
 
 }

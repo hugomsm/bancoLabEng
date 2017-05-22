@@ -18,7 +18,7 @@
 			<f:selectItem itemValue="Conta Poupança" itemLabel="Conta Poupança" />
 		</p:selectOneRadio>
 		<br />
-		<p:panelGrid columns="4">
+		<p:panelGrid columns="6">
 
 			<p:outputLabel for="inputAgencia" value="Agencia:" />
 			<p:inputText id="inputAgencia"
@@ -34,6 +34,7 @@
 				feedback="true" inline="true" promptLabel="Digite sua senha"
 				weakLabel="Senha fraca" goodLabel="Senha média"
 				strongLabel="Senha forte" />
+			<p:message for="inputSenha" severity="warn" />
 		</p:panelGrid>
 		<p:separator />
 		<h3>Dados do Usuário</h3>
@@ -41,40 +42,50 @@
 
 			<p:outputLabel for="inputNome" value="Nome:" indicateRequired="true" />
 			<p:inputText id="inputNome" value="#{contaMB.conta.usuario.nome}" />
+			<p:message for="inputNome" severity="warn"/>
 
 			<p:outputLabel for="inputCPF" value="CPF:" indicateRequired="true" />
 			<p:inputMask id="inputCPF" mask="999.999.999-99"
 				value="#{contaMB.conta.usuario.cpf}" />
+			<p:message for="inputCPF" severity="warn" />
 
 			<p:outputLabel for="inputRG" value="RG:" indicateRequired="true" />
 			<p:inputMask id="inputRG" mask="99.999.999-9"
 				value="#{contaMB.conta.usuario.rg}" />
+			<p:message for="inputRG" severity="warn" />
 
 			<p:outputLabel for="inputDataNasc" value="Data de Nascimento:"
 				indicateRequired="true" />
 			<p:calendar id="inputDataNasc" pattern="dd/MM/yyyy" navigator="true"
 				mask="true" value="#{contaMB.conta.usuario.dataNasc}" />
+			<p:message for="inputDataNasc" severity="warn" />
 
 			<p:outputLabel for="inputTelefone" value="Telefone:"
 				indicateRequired="true" />
 			<p:inputMask id="inputTelefone" mask="(99)9999-9999?9"
 				value="#{contaMB.conta.usuario.telefone}" />
+			<p:message for="inputTelefone" severity="warn" />
+
 			<p:outputLabel for="inputEmail" value="Email:"
 				indicateRequired="false" />
 			<p:inputText id="inputEmail" value="#{contaMB.conta.usuario.email}" />
+			<p:message for="inputEmail" severity="warn" />
 
 			<p:outputLabel for="inputLogradouro" value="Endereço:"
 				indicateRequired="true" />
 			<p:inputText id="inputLogradouro"
 				value="#{contaMB.conta.usuario.logradouro}" />
+			<p:message for="inputLogradouro" severity="warn" />
 
 			<p:outputLabel for="inputNumero" value="Número:"
 				indicateRequired="true" />
 			<p:inputText id="inputNumero" value="#{contaMB.conta.usuario.numero}" />
+			<p:message for="inputNumero" severity="warn" />
 
 			<p:outputLabel for="inputCEP" value="CEP:" indicateRequired="true" />
 			<p:inputMask id="inputCEP" mask="99999-999"
 				value="#{contaMB.conta.usuario.cep}" />
+			<p:message for="inputCEP" severity="warn" />
 
 		</p:panelGrid>
 		<br />

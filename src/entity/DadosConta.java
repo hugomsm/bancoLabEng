@@ -3,8 +3,8 @@ package entity;
 import java.io.Serializable;
 import java.util.Random;
 
+import javax.faces.context.FacesContext;
 import javax.persistence.Embeddable;
-import javax.persistence.Id;
 
 @Embeddable
 public class DadosConta implements Serializable {
@@ -20,8 +20,10 @@ public class DadosConta implements Serializable {
 	 * @return the agencia
 	 */
 	public String getAgencia() {
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		String pagina = ctx.getViewRoot().getViewId();
 		
-		if (agencia == null) {
+		if ("/cadastro.xhtml".equals(pagina)) {
 			Random r = new Random();
 			int i = r.nextInt(89999) + 10000;
 			return Integer.toString(i);
@@ -41,7 +43,10 @@ public class DadosConta implements Serializable {
 	 * @return the conta
 	 */
 	public String getConta() {
-		if (conta == null) {
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		String pagina = ctx.getViewRoot().getViewId();
+		
+		if ("/cadastro.xhtml".equals(pagina)) {
 			Random r = new Random();
 			int i = r.nextInt(899999) + 100000;
 			return Integer.toString(i);
