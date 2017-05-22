@@ -3,6 +3,9 @@ package entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Transacao implements Serializable{
 
 	/**
