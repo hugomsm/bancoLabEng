@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 //<f:actionListener binding="#{contaMB.salvar()}" />
@@ -112,7 +113,7 @@ public class Conta {
 	/**
 	 * @return the transacoes
 	 */
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="contaOrigem")
 	public List<Transacao> getTransacoes() {
 		return transacoes;
 	}

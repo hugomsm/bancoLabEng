@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import entity.Conta;
+import entity.DadosConta;
 
 public class ContaDAO {
 	public static void adicionar(Conta novaConta) {
@@ -20,23 +21,46 @@ public class ContaDAO {
 		em.clear();
 		factory.close();
 	}
-	
+
 	public static Conta validar(String agencia, String conta, String senha) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
 		EntityManager em = factory.createEntityManager();
 		try {
-			Query query = em.createQuery("select c from Conta c where " + "agencia = :ag and conta = :ct "
-					+ "and senha = :sh");
+			Query query = em
+					.createQuery("select c from Conta c where " + "agencia = :ag and conta = :ct " + "and senha = :sh");
 			query.setParameter("ag", agencia);
 			query.setParameter("ct", conta);
 			query.setParameter("sh", senha);
 			List<Conta> contas = query.getResultList();
-			if (contas != null && contas.size()>0) {
+			if (contas != null && contas.size() > 0) {
 				return contas.get(0);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static Conta procurar(DadosConta dc) {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
+		EntityManager em = factory.createEntityManager();
+		Conta c = em.find(Conta.class, dc);
+		if (c != null) {
+			return c;
+		}
+		return null;
+
+	}
+	
+	public static boolean atualizar(Conta c){
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
+		EntityManager em = factory.createEntityManager();
+		try {
+			em.refresh(c);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

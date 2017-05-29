@@ -18,7 +18,7 @@
 			<f:selectItem itemValue="Conta Poupança" itemLabel="Conta Poupança" />
 		</p:selectOneRadio>
 		<br />
-		<p:panelGrid columns="6">
+		<p:panelGrid columns="2" responsive="true">
 
 			<p:outputLabel for="inputAgencia" value="Agencia:" />
 			<p:inputText id="inputAgencia"
@@ -38,7 +38,7 @@
 		</p:panelGrid>
 		<p:separator />
 		<h3>Dados do Usuário</h3>
-		<p:panelGrid columns="4">
+		<p:panelGrid columns="3">
 
 			<p:outputLabel for="inputNome" value="Nome:" indicateRequired="true" />
 			<p:inputText id="inputNome" value="#{contaMB.conta.usuario.nome}" />

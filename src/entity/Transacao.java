@@ -3,8 +3,10 @@ package entity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -22,8 +24,8 @@ public class Transacao implements Serializable {
 	private String tipo;
 	@Min(1)
 	private double valor;
-	@NotEmpty
-	private String destino;
+	private Conta contaOrigem;
+	private Conta conta = new Conta();
 
 	/**
 	 * @return the dataTransacao
@@ -71,18 +73,18 @@ public class Transacao implements Serializable {
 	}
 
 	/**
-	 * @return the destino
+	 * @return the id
 	 */
-	public String getDestino() {
-		return destino;
+	public long getId() {
+		return id;
 	}
 
 	/**
-	 * @param destino
-	 *            the destino to set
+	 * @param id
+	 *            the id to set
 	 */
-	public void setDestino(String destino) {
-		this.destino = destino;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	/**
@@ -90,6 +92,36 @@ public class Transacao implements Serializable {
 	 */
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	/**
+	 * @return the conta
+	 */
+	public Conta getConta() {
+		return conta;
+	}
+
+	/**
+	 * @param conta
+	 *            the conta to set
+	 */
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}
+
+	/**
+	 * @return the contaOrigem
+	 */
+	@ManyToOne(fetch = FetchType.LAZY)
+	public Conta getContaOrigem() {
+		return contaOrigem;
+	}
+
+	/**
+	 * @param contaOrigem the contaOrigem to set
+	 */
+	public void setContaOrigem(Conta contaOrigem) {
+		this.contaOrigem = contaOrigem;
 	}
 
 }
