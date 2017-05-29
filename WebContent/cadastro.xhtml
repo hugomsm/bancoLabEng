@@ -10,7 +10,7 @@
 </h:head>
 <h:body>
 	<h1>Cadastro de Conta</h1>
-	<p:separator />
+	<p:separator responsive="true"/>
 	<h:form>
 		<h3>Dados de Conta</h3>
 		<p:selectOneRadio value="#{contaMB.conta.tipoConta}">
@@ -36,9 +36,9 @@
 				strongLabel="Senha forte" />
 			<p:message for="inputSenha" severity="warn" />
 		</p:panelGrid>
-		<p:separator />
+		<p:separator responsive="true"/>
 		<h3>Dados do Usuário</h3>
-		<p:panelGrid columns="3">
+		<p:panelGrid columns="3" responsive="true">
 
 			<p:outputLabel for="inputNome" value="Nome:" indicateRequired="true" />
 			<p:inputText id="inputNome" value="#{contaMB.conta.usuario.nome}" />

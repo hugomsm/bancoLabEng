@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -113,12 +114,14 @@ public class Transacao implements Serializable {
 	 * @return the contaOrigem
 	 */
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CONTA_ID")
 	public Conta getContaOrigem() {
 		return contaOrigem;
 	}
 
 	/**
-	 * @param contaOrigem the contaOrigem to set
+	 * @param contaOrigem
+	 *            the contaOrigem to set
 	 */
 	public void setContaOrigem(Conta contaOrigem) {
 		this.contaOrigem = contaOrigem;
