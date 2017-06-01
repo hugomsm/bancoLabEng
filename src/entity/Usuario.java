@@ -14,7 +14,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "usuario")
 public class Usuario {
-	@NotEmpty(message = "Nome não pode ser vazio")
+	@NotEmpty(message = "Não pode estar vazio")
 	private String nome;
 	@NotEmpty(message = "O CPF deve possuir 11 caracteres")
 	@Length(min = 14, max = 14)
@@ -24,11 +24,13 @@ public class Usuario {
 	@Length(min = 12, max = 12, message = "O RG deve possuir 9 caracteres")
 	private String rg;
 	@Past(message = "A data não pode ser futura")
+	@NotEmpty
 	private Date dataNasc;
 	@NotEmpty
 	@Length(min = 13, max = 14, message = "O telefone deve possuir 10 ou 11 dígitos, incluindo DDD")
 	private String telefone;
-	@Email
+	@Email(message="O Email não é válido")
+	@NotEmpty
 	private String email;
 	@NotEmpty
 	private String logradouro;

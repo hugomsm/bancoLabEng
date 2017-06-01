@@ -24,11 +24,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Conta {
 
 	private DadosConta contaUsuario = new DadosConta();
+	@NotEmpty(message="Senha não pode estar em branco")
 	private String senha;
+	@NotEmpty(message="Selecione uma opção")
 	private String tipoConta;
 	private double saldo;
 	private Usuario usuario = new Usuario();
-	private List<Transacao> transacoes = new ArrayList<>();
+	//private List<Transacao> transacoes = new ArrayList<>();
 
 	/**
 	 * @return the senha
@@ -113,15 +115,15 @@ public class Conta {
 	/**
 	 * @return the transacoes
 	 */
-	@OneToMany(mappedBy="contaOrigem")
-	public List<Transacao> getTransacoes() {
-		return transacoes;
-	}
-
-	/**
-	 * @param transacoes the transacoes to set
-	 */
-	public void setTransacoes(List<Transacao> transacoes) {
-		this.transacoes = transacoes;
-	}
+//	@OneToMany(mappedBy="contaOrigem")
+//	public List<Transacao> getTransacoes() {
+//		return transacoes;
+//	}
+//
+//	/**
+//	 * @param transacoes the transacoes to set
+//	 */
+//	public void setTransacoes(List<Transacao> transacoes) {
+//		this.transacoes = transacoes;
+//	}
 }

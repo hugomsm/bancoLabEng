@@ -15,26 +15,29 @@ public class AcessoListener implements PhaseListener {
 
 	@Override
 	public void afterPhase(PhaseEvent ev) {
-		FacesContext fc = ev.getFacesContext();
-		String pagina = fc.getViewRoot().getViewId();
-		if (!"/login.xhtml".equals(pagina)) {
-			Application app = fc.getApplication();
-			Conta c = app.evaluateExpressionGet(fc, "#{contaMB.conta}", Conta.class);
-			if (c == null) {
-				NavigationHandler nav = app.getNavigationHandler();
-				nav.handleNavigation(fc, null, "login?faces-redirect=true");
-				fc.renderResponse();
-			}
-		}
+		System.out.println(ev.getPhaseId().getName() +	"afterPhase");
+//		FacesContext fc = ev.getFacesContext();
+//		String pagina = fc.getViewRoot().getViewId();
+//		if (!"/login.xhtml".equals(pagina)) {
+//			Application app = fc.getApplication();
+//			Conta c = app.evaluateExpressionGet(fc, "#{contaMB.conta}", Conta.class);
+//			if (c == null) {
+//				NavigationHandler nav = app.getNavigationHandler();
+//				nav.handleNavigation(fc, null, "login?faces-redirect=true");
+//				fc.renderResponse();
+//			}
+//		}
 	}
 
 	@Override
 	public void beforePhase(PhaseEvent ev) {
+		System.out.println(ev.getPhaseId().getName() +	"beforePhase");
 	}
 
 	@Override
 	public PhaseId getPhaseId() {
-		return PhaseId.RESTORE_VIEW;
+		//return PhaseId.RESTORE_VIEW;
+		return PhaseId.ANY_PHASE;
 	}
 
 }

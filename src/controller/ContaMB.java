@@ -34,6 +34,7 @@ public class ContaMB {
 		if (conta != null) {
 			pagina = "conta?faces-redirect=true";
 		} else {
+			conta = new Conta();
 			pagina = "login";
 		}
 
