@@ -51,8 +51,8 @@ public class ContaDAO {
 		return null;
 
 	}
-	
-	public static boolean atualizar(Conta c){
+
+	public static boolean atualizar(Conta c) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
 		EntityManager em = factory.createEntityManager();
 		try {
@@ -62,5 +62,20 @@ public class ContaDAO {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	public static Conta procurar(String agenciaDestino, String contaDestino, String cpfDestino) {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
+		EntityManager em = factory.createEntityManager();
+		DadosConta dc = new DadosConta();
+		dc.setAgencia(agenciaDestino);
+		dc.setConta(contaDestino);
+		Conta c = em.find(Conta.class, dc);
+		if (cpfDestino.equals(c.getUsuario().getCpf()) && c != null) {
+			return c;
+		} else {
+			// mensagem de CPF inválido
+		}
+		return null;
 	}
 }

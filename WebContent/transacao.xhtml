@@ -14,15 +14,15 @@
 	<p:panelGrid columns="2">
 		<p:outputLabel for="inputAgencia" value="Agência" />
 		<p:inputText id="inputAgencia"
-			value="#{transacaoMB.transacaoAtual.conta.contaUsuario.agencia}" />
+			value="#{transacaoMB.transacaoAtual.agenciaDestino}" />
 
 		<p:outputLabel for="inputConta" value="Conta" />
 		<p:inputText id="inputConta"
-			value="#{transacaoMB.transacaoAtual.conta.contaUsuario.conta}" />
+			value="#{transacaoMB.transacaoAtual.contaDestino}" />
 
 		<p:outputLabel for="inputCPF" value="CPF" />
 		<p:inputText id="inputCPF"
-				value="#{transacaoMB.transacaoAtual.conta.usuario.cpf}" />
+				value="#{transacaoMB.transacaoAtual.cpfDestino}" />
 		
 		<p:outputLabel for="inputValor" value="Valor" />
 		<p:inputText id="inputValor"

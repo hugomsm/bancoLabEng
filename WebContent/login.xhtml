@@ -30,12 +30,11 @@
 			<p:password id="inputSenha" value="#{contaMB.conta.senha}" />
 			<p:message for="inputSenha" />
 		</p:panelGrid>
-
+		<br />
 		<p:commandButton action="#{contaMB.logar}" value="Login"
 			update="@form" />
 		<p:commandLink value="Cadastrar Conta" action="cadastro"
 			immediate="true" />
 	</h:form>
-	<br />
 </h:body>
 </html>
