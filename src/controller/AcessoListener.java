@@ -15,7 +15,7 @@ public class AcessoListener implements PhaseListener {
 
 	@Override
 	public void afterPhase(PhaseEvent ev) {
-		System.out.println(ev.getPhaseId().getName() +	"afterPhase");
+//		System.out.println(ev.getPhaseId().getName() +	"afterPhase");
 //		FacesContext fc = ev.getFacesContext();
 //		String pagina = fc.getViewRoot().getViewId();
 //		if (!"/login.xhtml".equals(pagina)) {
@@ -31,7 +31,7 @@ public class AcessoListener implements PhaseListener {
 
 	@Override
 	public void beforePhase(PhaseEvent ev) {
-		System.out.println(ev.getPhaseId().getName() +	"beforePhase");
+//		System.out.println(ev.getPhaseId().getName() +	"beforePhase");
 	}
 
 	@Override

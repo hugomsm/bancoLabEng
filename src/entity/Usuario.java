@@ -6,7 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -24,12 +26,12 @@ public class Usuario {
 	@Length(min = 12, max = 12, message = "O RG deve possuir 9 caracteres")
 	private String rg;
 	@Past(message = "A data não pode ser futura")
-	@NotEmpty
+	@NotNull(message = "Não pode estar vazio")
 	private Date dataNasc;
 	@NotEmpty
 	@Length(min = 13, max = 14, message = "O telefone deve possuir 10 ou 11 dígitos, incluindo DDD")
 	private String telefone;
-	@Email(message="O Email não é válido")
+	@Email(message = "O Email não é válido")
 	@NotEmpty
 	private String email;
 	@NotEmpty

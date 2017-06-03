@@ -10,27 +10,32 @@
 <h:body>
 	<h3>Banco</h3>
 	<h:form>
-		<p:panelGrid columns="2">
+		<p:panelGrid columns="3">
 
 			<p:outputLabel for="inputAgencia" value="Agência"
 				indicateRequired="true" requiredMessage="Digite sua Agência" />
 			<p:inputText id="inputAgencia"
 				value="#{contaMB.conta.contaUsuario.agencia}"></p:inputText>
+			<p:message for="inputAgencia" />
 
 			<p:outputLabel for="inputConta" value="Conta" indicateRequired="true"
 				requiredMessage="Digite sua Conta" />
 			<p:inputText id="inputConta"
 				value="#{contaMB.conta.contaUsuario.conta}"></p:inputText>
+			<p:message for="inputConta" />
 
 
 			<p:outputLabel for="inputSenha" value="Senha" indicateRequired="true"
 				requiredMessage="Digite sua Senha" />
 			<p:password id="inputSenha" value="#{contaMB.conta.senha}" />
+			<p:message for="inputSenha" />
 		</p:panelGrid>
+
+		<p:commandButton action="#{contaMB.logar}" value="Login"
+			update="@form" />
+		<p:commandLink value="Cadastrar Conta" action="cadastro"
+			immediate="true" />
 	</h:form>
 	<br />
-	<p:commandButton action="#{contaMB.logar}" value="Login"></p:commandButton>
-	<p:commandLink value="Cadastrar Conta" action="cadastro" immediate="true"/>
-
 </h:body>
 </html>

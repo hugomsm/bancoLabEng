@@ -6,6 +6,8 @@ import java.util.Random;
 import javax.faces.context.FacesContext;
 import javax.persistence.Embeddable;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Embeddable
 public class DadosConta implements Serializable {
 
@@ -13,7 +15,9 @@ public class DadosConta implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -7021727065659352073L;
+	@NotEmpty
 	private String agencia;
+	@NotEmpty
 	private String conta;
 
 	/**
