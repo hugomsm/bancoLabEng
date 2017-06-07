@@ -1,7 +1,11 @@
 package controller;
 
+import java.io.IOException;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 
 import dao.ContaDAO;
 import entity.Conta;
@@ -47,10 +51,16 @@ public class ContaMB {
 		return "login";
 	}
 	
-	public String sair(){
-		conta = null;
-		return "login";
+	public String atualizar(){
+		ContaDAO.atualizar(conta);
 		
+		return "conta";
+	}
+	
+	public void sair() throws IOException{
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+	    ec.invalidateSession();
+	    ec.redirect(ec.getRequestContextPath() + "/login.xhtml");
 	}
 
 }

@@ -10,29 +10,27 @@
 <body>
 	<h3>Dados de Depósito</h3>
 	<br />
+	<h:form>
+		<p:panelGrid columns="2">
+			<p:outputLabel for="inputValor" value="Valor de Depósito" />
+			<p:inputText id="inputValor"
+				value="#{transacaoMB.transacaoAtual.valor}" />
 
-	<p:panelGrid columns="2">
-		<p:outputLabel for="inputValor" value="Valor de Depósito" />
-		<p:inputText id="inputValor"
-			value="#{transacaoMB.transacaoAtual.valor}" />
-		
-	</p:panelGrid>
+		</p:panelGrid>
 
-	<br />
-	<p:commandButton value="Depositar">
-		<p:confirm header="Confirmação" message="Confirmar depósito?"
-			icon="ui-icon-alert" />
-	</p:commandButton>
+		<br />
+		<p:commandButton value="Depositar" action="#{transacaoMB.depositar}">
+			<p:confirm header="Confirmação" message="Confirmar depósito?"
+				icon="ui-icon-alert" />
+		</p:commandButton>
 
-	<p:confirmDialog global="true">
-		<p:commandButton value="Sim" type="button"
-			styleClass="ui-confirmdialog-yes"
-			action="#{transacaoMB.depositar}" icon="ui-icon-check" />
-		<p:commandButton value="Não" type="button"
-			styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-	</p:confirmDialog>
-
-	<p:commandButton action="conta" value="Cancelar" immediate="true"></p:commandButton>
-
+		<p:confirmDialog global="true">
+			<p:commandButton value="Sim" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="Não" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:confirmDialog>
+		<p:commandButton action="conta" value="Cancelar" immediate="true" />
+	</h:form>
 </body>
 </html>

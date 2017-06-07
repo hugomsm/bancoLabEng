@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Atualização de Conta</title>
+</h:head>
+<h:body>
+	<h1>Atualização de Conta</h1>
+	<p:separator responsive="true" />
+	<h:form>
+		<br />
+		<p:panelGrid columns="2" responsive="true">
+
+			<p:outputLabel for="inputSenha" value="Senha" />
+			<p:password id="inputSenha" value="#{contaMB.conta.senha}"
+				feedback="true" inline="true" promptLabel="Digite sua senha"
+				weakLabel="Senha fraca" goodLabel="Senha média"
+				strongLabel="Senha forte" />
+			<p:message for="inputSenha" />
+		</p:panelGrid>
+		<p:separator responsive="true" />
+		<h3>Dados do Usuário</h3>
+		<p:panelGrid columns="3" responsive="true">
+
+			<p:outputLabel for="inputNome" value="Nome:" />
+			<p:inputText id="inputNome" value="#{contaMB.conta.usuario.nome}" />
+			<p:message for="inputNome" />
+
+			<p:outputLabel for="inputCPF" value="CPF:" />
+			<p:inputMask id="inputCPF" mask="999.999.999-99"
+				value="#{contaMB.conta.usuario.cpf}" />
+			<p:message for="inputCPF" />
+
+			<p:outputLabel for="inputRG" value="RG:" />
+			<p:inputMask id="inputRG" mask="99.999.999-9"
+				value="#{contaMB.conta.usuario.rg}" />
+			<p:message for="inputRG" />
+
+			<p:outputLabel for="inputDataNasc" value="Data de Nascimento:" />
+			<p:calendar id="inputDataNasc" pattern="dd/MM/yyyy" navigator="true"
+				mask="true" value="#{contaMB.conta.usuario.dataNasc}" />
+			<p:message for="inputDataNasc" />
+
+			<p:outputLabel for="inputTelefone" value="Telefone:" />
+			<p:inputMask id="inputTelefone" mask="(99)9999-9999?9"
+				value="#{contaMB.conta.usuario.telefone}" />
+			<p:message for="inputTelefone" />
+
+			<p:outputLabel for="inputEmail" value="Email:" />
+			<p:inputText id="inputEmail" value="#{contaMB.conta.usuario.email}" />
+			<p:message for="inputEmail" />
+
+			<p:outputLabel for="inputLogradouro" value="Endereço:" />
+			<p:inputText id="inputLogradouro"
+				value="#{contaMB.conta.usuario.logradouro}" />
+			<p:message for="inputLogradouro" />
+
+			<p:outputLabel for="inputNumero" value="Número:" />
+			<p:inputText id="inputNumero" value="#{contaMB.conta.usuario.numero}" />
+			<p:message for="inputNumero" />
+
+			<p:outputLabel for="inputCEP" value="CEP:" />
+			<p:inputMask id="inputCEP" mask="99999-999"
+				value="#{contaMB.conta.usuario.cep}" />
+			<p:message for="inputCEP" />
+
+		</p:panelGrid>
+		<br />
+		<p:commandButton value="Salvar" action="#{contaMB.atualizar}"
+			update="@form" />
+		<p:commandButton value="Cancelar" action="conta" immediate="true" />
+	</h:form>
+</h:body>
+</html>
