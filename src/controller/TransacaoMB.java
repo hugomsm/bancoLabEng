@@ -4,9 +4,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import dao.ContaDAO;
 import dao.TransacaoDAO;
@@ -40,7 +42,10 @@ public class TransacaoMB {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Conta c = (Conta) context.getApplication().evaluateExpressionGet(context, "#{contaMB.conta}", Conta.class);
 		if (transacaoAtual.getContaOrigem().equals(c)) {
-			// Exception de erro
+			FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"Transação inválida", "Não é possível transferir para a própria conta.");
+
+			throw new ValidatorException(mensagem);
 		} else {
 			Conta contaDestino = ContaDAO.procurar(transacaoAtual.getAgenciaDestino(), transacaoAtual.getContaDestino(),
 					transacaoAtual.getCpfDestino());
@@ -52,17 +57,22 @@ public class TransacaoMB {
 					try {
 						transacaoAtual.setDataTransacao(sdf.parse(sdf.format((new Date()))));
 					} catch (ParseException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
+						transacaoAtual.setDataTransacao(new Date());
 					}
 					TransacaoDAO.adicionar(transacaoAtual);
 				} else {
-					// Mensagem de saldo insuficiente
+					FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO,
+							"Saldo insuficiente", "Seu saldo não é suficiente para completar a transação");
+
+					throw new ValidatorException(mensagem);
 				}
 
 			} else {
-				// Mensagem de conta não existente
-			}
+				FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO,
+						"Conta não existe", "A conta informada não existe.");
+
+				throw new ValidatorException(mensagem);			}
 		}
 	}
 
@@ -78,8 +88,8 @@ public class TransacaoMB {
 		try {
 			transacaoAtual.setDataTransacao(sdf.parse(sdf.format((new Date()))));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			transacaoAtual.setDataTransacao(new Date());
 		}
 		TransacaoDAO.adicionar(transacaoAtual);
 	}
