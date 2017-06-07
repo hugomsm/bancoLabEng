@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 
@@ -25,6 +25,8 @@ public class Transacao implements Serializable {
 	private String tipo;
 	@Min(1)
 	private double valor;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumns({@JoinColumn(name = "agencia"), @JoinColumn(name = "conta")})
 	private Conta contaOrigem;
 	private String agenciaDestino;
 	private String contaDestino;
@@ -100,8 +102,7 @@ public class Transacao implements Serializable {
 	/**
 	 * @return the contaOrigem
 	 */
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CONTA_ID")
+
 	public Conta getContaOrigem() {
 		return contaOrigem;
 	}
