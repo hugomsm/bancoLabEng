@@ -10,10 +10,10 @@
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/banco" />
-			<property name="javax.persistence.jdbc.user" value="root" />
-			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://sql10.freemysqlhosting.net/sql10179370" />
+			<property name="javax.persistence.jdbc.user" value="sql10179370" />
+			<property name="javax.persistence.jdbc.password" value="mu6nGAsX6N" />
 		</properties>
 	</persistence-unit>
-
 </persistence>

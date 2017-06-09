@@ -10,41 +10,44 @@
 <body>
 	<h3>Dados da Conta Destino</h3>
 	<br />
-
-	<p:panelGrid columns="2">
+	<h:form></h:form>
+	<p:panelGrid columns="3">
 		<p:outputLabel for="inputAgencia" value="Agência" />
 		<p:inputText id="inputAgencia"
 			value="#{transacaoMB.transacaoAtual.agenciaDestino}" />
+		<p:message for="inputAgencia" />
 
 		<p:outputLabel for="inputConta" value="Conta" />
 		<p:inputText id="inputConta"
 			value="#{transacaoMB.transacaoAtual.contaDestino}" />
+		<p:messa for="inputConta" />
 
 		<p:outputLabel for="inputCPF" value="CPF" />
 		<p:inputText id="inputCPF"
-				value="#{transacaoMB.transacaoAtual.cpfDestino}" />
-		
+			value="#{transacaoMB.transacaoAtual.cpfDestino}" />
+		<p:message for="inputCPF" />
+
 		<p:outputLabel for="inputValor" value="Valor" />
 		<p:inputText id="inputValor"
-				value="#{transacaoMB.transacaoAtual.valor}" />
-		
+			value="#{transacaoMB.transacaoAtual.valor}" />
+		<p:message for="inputValor" />
+
 	</p:panelGrid>
 
 	<br />
-	<p:commandButton value="Transferir">
+	<p:commandButton value="Transferir" action="#{transacaoMB.transferir}">
 		<p:confirm header="Confirmação" message="Confirmar transação?"
 			icon="ui-icon-alert" />
 	</p:commandButton>
 
 	<p:confirmDialog global="true">
 		<p:commandButton value="Sim" type="button"
-			styleClass="ui-confirmdialog-yes"
-			action="#{transacaoMB.transferir}" icon="ui-icon-check" />
+			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
 		<p:commandButton value="Não" type="button"
 			styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 	</p:confirmDialog>
 
-	<p:commandButton action="conta" value="Cancelar" immediate="true"/>
-
+	<p:commandButton action="conta" value="Cancelar" immediate="true" />
+	</h:form>
 </body>
 </html>

@@ -12,7 +12,7 @@
 	<h:form>
 		<p:outputLabel value="Bem vindo #{contaMB.conta.usuario.nome} !" />
 		<br />
-		<p:commandLink value="Alterar dados de cadastro" outcome="atualizar"
+		<p:commandButton value="Alterar dados de cadastro" action="atualizar"
 			immediate="true" />
 		<br />
 		<p:commandLink value="Sair" action="#{contaMB.sair}" />
