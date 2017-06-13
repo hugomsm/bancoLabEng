@@ -13,6 +13,8 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import controller.ValidarCampos;
+
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -22,24 +24,24 @@ public class Usuario {
 	@Length(min = 14, max = 14)
 	@Id
 	private String cpf;
-	@NotEmpty
+	@NotEmpty(message = "Não pode estar vazio")
 	@Length(min = 12, max = 12, message = "O RG deve possuir 9 caracteres")
 	private String rg;
 	@Past(message = "A data não pode ser futura")
 	@NotNull(message = "Não pode estar vazio")
 	private Date dataNasc;
-	@NotEmpty
+	@NotEmpty(message = "Não pode estar vazio")
 	@Length(min = 13, max = 14, message = "O telefone deve possuir 10 ou 11 dígitos, incluindo DDD")
 	private String telefone;
 	@Email(message = "O Email não é válido")
-	@NotEmpty
+	@NotEmpty(message = "Não pode estar vazio")
 	private String email;
-	@NotEmpty
+	@NotEmpty(message = "Não pode estar vazio")
 	private String logradouro;
-	@NotEmpty
+	@NotEmpty(message = "Não pode estar vazio")
 	@Min(0)
 	private String numero;
-	@NotEmpty
+	@NotEmpty(message = "Não pode estar vazio")
 	@Length(min = 9, max = 9, message = "O CEP deve possuir 8 caracteres")
 	private String cep;
 
@@ -68,9 +70,15 @@ public class Usuario {
 	/**
 	 * @param cpf
 	 *            the cpf to set
+	 * @throws Exception 
 	 */
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setCpf(String cpf) throws Exception {
+		if (ValidarCampos.isValidCPF(cpf)){
+			this.cpf = cpf;
+		} else {
+			throw new Exception ("CPF Inválido");
+		}
+		
 	}
 
 	/**

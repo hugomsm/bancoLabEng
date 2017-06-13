@@ -56,7 +56,11 @@ public class ContaDAO {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
 		EntityManager em = factory.createEntityManager();
 		try {
+			em.getTransaction().begin();
 			em.refresh(c);
+			em.getTransaction().commit();
+			em.clear();
+			factory.close();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -75,6 +79,25 @@ public class ContaDAO {
 			return c;
 		} else {
 			// mensagem de CPF inválido
+		}
+		return null;
+	}
+
+	public static Conta procurarSenha(String agencia, String conta, String cpf) {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
+		EntityManager em = factory.createEntityManager();
+		try {
+			Query query = em.createQuery("select c from Conta c INNER JOIN c.usuario u ON "
+					+ "c.agencia = :ag and c.conta = :ct and u.cpf = :cp");
+			query.setParameter("ag", agencia);
+			query.setParameter("ct", conta);
+			query.setParameter("cp", cpf);
+			List<Conta> contas = query.getResultList();
+			if (contas != null && contas.size() > 0) {
+				return contas.get(0);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return null;
 	}

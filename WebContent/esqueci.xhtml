@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Esqueci minha senha</title>
+</h:head>
+<body>
+	<h3>Esqueci minha senha</h3>
+	<br />
+	<h:form>
+		<p:panelGrid columns="3">
+			<p:outputLabel for="inputAgencia" value="Sua Agência" />
+			<p:inputText id="inputAgencia"
+				value="#{esqueciMB.conta.contaUsuario.agencia}" />
+			<p:message for="inputAgencia" />
+
+			<p:outputLabel for="inputConta" value="Sua Conta" />
+			<p:inputText id="inputConta"
+				value="#{esqueciMB.conta.contaUsuario.conta}" />
+			<p:message for="inputConta" />
+			
+			<p:outputLabel for="inputCPF" value="Seu CPF" />
+			<p:inputText id="inputCPF"
+				value="#{esqueciMB.conta.usuario.cpf}" />
+			<p:message for="inputCPF" />
+
+			<p:outputLabel for="inputSenha" value="Sua Senha" />
+			<p:inputText id="inputSenha"
+				value="#{esqueciMB.conta.senha}" readonly="true" />
+			<p:message for="inputSenha" />
+
+		</p:panelGrid>
+
+		<br />
+		<p:commandButton value="Procurar" action="#{esqueciMB.procurar}" update="@form"/>
+		<p:commandButton value="Voltar" action="login" immediate="true" />
+	</h:form>
+</body>
+</html>
