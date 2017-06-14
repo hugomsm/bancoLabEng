@@ -13,17 +13,17 @@
 	<h:form>
 		<p:panelGrid columns="3">
 			<p:outputLabel for="inputAgencia" value="Sua Agência" />
-			<p:inputText id="inputAgencia"
-				value="#{esqueciMB.conta.contaUsuario.agencia}" />
+			<p:inputMask id="inputAgencia"
+				value="#{esqueciMB.conta.contaUsuario.agencia}" mask="99999"/>
 			<p:message for="inputAgencia" />
 
 			<p:outputLabel for="inputConta" value="Sua Conta" />
-			<p:inputText id="inputConta"
-				value="#{esqueciMB.conta.contaUsuario.conta}" />
+			<p:inputMask id="inputConta"
+				value="#{esqueciMB.conta.contaUsuario.conta}" mask="999999" />
 			<p:message for="inputConta" />
 
 			<p:outputLabel for="inputCPF" value="Seu CPF" />
-			<p:inputText id="inputCPF" value="#{esqueciMB.conta.usuario.cpf}"
+			<p:inputMask id="inputCPF" value="#{esqueciMB.conta.usuario.cpf}"
 				mask="999.999.999-99" />
 			<p:message for="inputCPF" />
 
