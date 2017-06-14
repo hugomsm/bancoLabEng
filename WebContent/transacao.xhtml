@@ -13,18 +13,19 @@
 	<h:form></h:form>
 	<p:panelGrid columns="3">
 		<p:outputLabel for="inputAgencia" value="Agência" />
-		<p:inputText id="inputAgencia"
-			value="#{transacaoMB.transacaoAtual.agenciaDestino}" />
+		<p:inputMask id="inputAgencia"
+			value="#{transacaoMB.transacaoAtual.agenciaDestino}" mask="99999" />
 		<p:message for="inputAgencia" />
 
 		<p:outputLabel for="inputConta" value="Conta" />
-		<p:inputText id="inputConta"
-			value="#{transacaoMB.transacaoAtual.contaDestino}" />
+		<p:inputMask id="inputConta"
+			value="#{transacaoMB.transacaoAtual.contaDestino}" mask="999999" />
 		<p:messa for="inputConta" />
 
 		<p:outputLabel for="inputCPF" value="CPF" />
-		<p:inputText id="inputCPF"
-			value="#{transacaoMB.transacaoAtual.cpfDestino}" />
+		<p:inputMask id="inputCPF"
+			value="#{transacaoMB.transacaoAtual.cpfDestino}"
+			mask="999.999.999-64" />
 		<p:message for="inputCPF" />
 
 		<p:outputLabel for="inputValor" value="Valor" />
@@ -38,15 +39,13 @@
 	<p:commandButton value="Transferir" action="#{transacaoMB.transferir}">
 		<p:confirm header="Confirmação" message="Confirmar transação?"
 			icon="ui-icon-alert" />
+		<p:confirmDialog global="true">
+			<p:commandButton value="Sim" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="Não" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:confirmDialog>
 	</p:commandButton>
-
-	<p:confirmDialog global="true">
-		<p:commandButton value="Sim" type="button"
-			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-		<p:commandButton value="Não" type="button"
-			styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-	</p:confirmDialog>
-
 	<p:commandButton action="conta" value="Cancelar" immediate="true" />
 	</h:form>
 </body>
