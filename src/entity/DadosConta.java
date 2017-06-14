@@ -15,9 +15,9 @@ public class DadosConta implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -7021727065659352073L;
-	@NotEmpty
+	@NotEmpty(message="Não pode estar vazio.")
 	private String agencia;
-	@NotEmpty
+	@NotEmpty(message="Não pode estar vazio")
 	private String conta;
 
 	/**

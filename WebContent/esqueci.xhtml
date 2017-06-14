@@ -21,21 +21,22 @@
 			<p:inputText id="inputConta"
 				value="#{esqueciMB.conta.contaUsuario.conta}" />
 			<p:message for="inputConta" />
-			
+
 			<p:outputLabel for="inputCPF" value="Seu CPF" />
-			<p:inputText id="inputCPF"
-				value="#{esqueciMB.conta.usuario.cpf}" />
+			<p:inputText id="inputCPF" value="#{esqueciMB.conta.usuario.cpf}"
+				mask="999.999.999-99" />
 			<p:message for="inputCPF" />
 
 			<p:outputLabel for="inputSenha" value="Sua Senha" />
-			<p:inputText id="inputSenha"
-				value="#{esqueciMB.conta.senha}" readonly="true" />
+			<p:inputText id="inputSenha" value="#{esqueciMB.conta.senha}"
+				readonly="true" />
 			<p:message for="inputSenha" />
 
 		</p:panelGrid>
 
 		<br />
-		<p:commandButton value="Procurar" action="#{esqueciMB.procurar}" update="@form"/>
+		<p:commandButton value="Procurar" action="#{esqueciMB.procurar}"
+			update="@form" />
 		<p:commandButton value="Voltar" action="login" immediate="true" />
 	</h:form>
 </body>

@@ -114,7 +114,7 @@ public class Conta {
 	/**
 	 * @return the transacoes
 	 */
-	@OneToMany(mappedBy="contaOrigem", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="contaOrigem", fetch = FetchType.EAGER)
 	public List<Transacao> getTransacoes() {
 		return transacoes;
 	}

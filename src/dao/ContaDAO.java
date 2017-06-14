@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import entity.Conta;
 import entity.DadosConta;
@@ -19,6 +20,7 @@ public class ContaDAO {
 		em.persist(novaConta);
 		em.getTransaction().commit();
 		em.clear();
+		em.close();
 		factory.close();
 	}
 
@@ -32,6 +34,9 @@ public class ContaDAO {
 			query.setParameter("ct", conta);
 			query.setParameter("sh", senha);
 			List<Conta> contas = query.getResultList();
+			em.clear();
+			em.close();
+			factory.close();
 			if (contas != null && contas.size() > 0) {
 				return contas.get(0);
 			}
@@ -45,6 +50,9 @@ public class ContaDAO {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
 		EntityManager em = factory.createEntityManager();
 		Conta c = em.find(Conta.class, dc);
+		em.clear();
+		em.close();
+		factory.close();
 		if (c != null) {
 			return c;
 		}
@@ -57,9 +65,10 @@ public class ContaDAO {
 		EntityManager em = factory.createEntityManager();
 		try {
 			em.getTransaction().begin();
-			em.refresh(c);
+			em.merge(c);
 			em.getTransaction().commit();
 			em.clear();
+			em.close();
 			factory.close();
 			return true;
 		} catch (Exception e) {
@@ -75,6 +84,9 @@ public class ContaDAO {
 		dc.setAgencia(agenciaDestino);
 		dc.setConta(contaDestino);
 		Conta c = em.find(Conta.class, dc);
+		em.clear();
+		em.close();
+		factory.close();
 		if (cpfDestino.equals(c.getUsuario().getCpf()) && c != null) {
 			return c;
 		} else {
@@ -87,14 +99,17 @@ public class ContaDAO {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
 		EntityManager em = factory.createEntityManager();
 		try {
-			Query query = em.createQuery("select c from Conta c INNER JOIN c.usuario u ON "
-					+ "c.agencia = :ag and c.conta = :ct and u.cpf = :cp");
+			Query query = em.createQuery("select con FROM Conta con INNER JOIN con.usuario u "
+					+ "WHERE con.contaUsuario.agencia = :ag AND con.contaUsuario.conta = :ct AND u.cpf = :cp");
 			query.setParameter("ag", agencia);
 			query.setParameter("ct", conta);
 			query.setParameter("cp", cpf);
-			List<Conta> contas = query.getResultList();
-			if (contas != null && contas.size() > 0) {
-				return contas.get(0);
+			Conta contas = (Conta) query.getSingleResult();
+			em.clear();
+			em.close();
+			factory.close();
+			if (contas != null){
+				return contas;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -21,7 +21,7 @@ public class Usuario {
 	@NotEmpty(message = "Não pode estar vazio")
 	private String nome;
 	@NotEmpty(message = "O CPF deve possuir 11 caracteres")
-	@Length(min = 14, max = 14)
+	@Length(min = 14, max = 14, message = "O CPF deve possuir 11 caracteres")
 	@Id
 	private String cpf;
 	@NotEmpty(message = "Não pode estar vazio")
@@ -73,12 +73,7 @@ public class Usuario {
 	 * @throws Exception 
 	 */
 	public void setCpf(String cpf) throws Exception {
-		if (ValidarCampos.isValidCPF(cpf)){
 			this.cpf = cpf;
-		} else {
-			throw new Exception ("CPF Inválido");
-		}
-		
 	}
 
 	/**
