@@ -26,6 +26,16 @@
 			<p:inputMask id="inputCPF" value="#{esqueciMB.conta.usuario.cpf}"
 				mask="999.999.999-99" />
 			<p:message for="inputCPF" />
+			
+			<p:outputLabel for="inputRG" value="Seu RG" />
+			<p:inputMask id="inputRG" value="#{esqueciMB.conta.usuario.rg}"
+				mask="99.999.999-9" />
+			<p:message for="inputRG"/>
+			
+			<p:outputLabel for="inputTelefone" value="Telefone:" />
+			<p:inputMask id="inputTelefone" mask="(99)9999-9999?9"
+				value="#{esqueciMB.conta.usuario.telefone}" />
+			<p:message for="inputTelefone" />
 
 			<p:outputLabel for="inputSenha" value="Sua Senha" />
 			<p:inputText id="inputSenha" value="#{esqueciMB.conta.senha}"

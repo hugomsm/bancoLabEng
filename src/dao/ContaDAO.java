@@ -2,6 +2,8 @@ package dao;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.validator.ValidatorException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -90,20 +92,24 @@ public class ContaDAO {
 		if (cpfDestino.equals(c.getUsuario().getCpf()) && c != null) {
 			return c;
 		} else {
-			// mensagem de CPF inválido
+			FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"Transferência inválida", "Verifique se os dados estão corretos para completar a transação.");
+			throw new ValidatorException(mensagem);
 		}
-		return null;
 	}
 
-	public static Conta procurarSenha(String agencia, String conta, String cpf) {
+	public static Conta procurarSenha(String agencia, String conta, String cpf, String rg, String telefone) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
 		EntityManager em = factory.createEntityManager();
 		try {
 			Query query = em.createQuery("select con FROM Conta con INNER JOIN con.usuario u "
-					+ "WHERE con.contaUsuario.agencia = :ag AND con.contaUsuario.conta = :ct AND u.cpf = :cp");
+					+ "WHERE con.contaUsuario.agencia = :ag AND con.contaUsuario.conta = :ct AND u.cpf = :cp AND u.rg = :rg AND"
+					+ " u.telefone = :tel");
 			query.setParameter("ag", agencia);
 			query.setParameter("ct", conta);
 			query.setParameter("cp", cpf);
+			query.setParameter("rg", rg);
+			query.setParameter("tel", telefone);
 			Conta contas = (Conta) query.getSingleResult();
 			em.clear();
 			em.close();
@@ -115,5 +121,16 @@ public class ContaDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static void remover(Conta conta) {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
+		EntityManager em = factory.createEntityManager();
+		em.getTransaction().begin();
+		em.remove(conta);
+		em.getTransaction().commit();
+		em.clear();
+		em.close();
+		factory.close();
 	}
 }

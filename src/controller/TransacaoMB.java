@@ -41,6 +41,7 @@ public class TransacaoMB {
 	public void transferir() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Conta c = (Conta) context.getApplication().evaluateExpressionGet(context, "#{contaMB.conta}", Conta.class);
+		transacaoAtual.setContaOrigem(c);
 		if (transacaoAtual.getContaOrigem().equals(c)) {
 			FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"Transação inválida", "Não é possível transferir para a própria conta.");
@@ -76,7 +77,7 @@ public class TransacaoMB {
 		}
 	}
 
-	public void depositar() {
+	public String depositar() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Conta c = (Conta) context.getApplication().evaluateExpressionGet(context, "#{contaMB.conta}", Conta.class);
 		c.setSaldo(c.getSaldo() + transacaoAtual.getValor());
@@ -92,6 +93,10 @@ public class TransacaoMB {
 			transacaoAtual.setDataTransacao(new Date());
 		}
 		TransacaoDAO.adicionar(transacaoAtual);
+		c.getTransacoes().add(transacaoAtual);
+		return "conta";
 	}
 
 }
+//42416
+//756440

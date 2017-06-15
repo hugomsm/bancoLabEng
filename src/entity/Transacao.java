@@ -25,7 +25,7 @@ public class Transacao implements Serializable {
 	private String tipo;
 	@Min(1)
 	private double valor;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumns({@JoinColumn(name = "agencia"), @JoinColumn(name = "conta")})
 	private Conta contaOrigem;
 	private String agenciaDestino;

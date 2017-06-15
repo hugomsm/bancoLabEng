@@ -57,6 +57,14 @@ public class ContaMB {
 		return "conta";
 	}
 	
+	public void remover() throws IOException{
+		ContaDAO.remover(conta);
+		conta = new Conta();
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+	    ec.invalidateSession();
+	    ec.redirect(ec.getRequestContextPath() + "/login.xhtml");
+	}
+	
 	public void sair() throws IOException{
 		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 	    ec.invalidateSession();

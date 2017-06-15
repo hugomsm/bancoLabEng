@@ -42,7 +42,7 @@ public class EsqueciMB {
 
 	public void procurar() {
 		Conta achada= ContaDAO.procurarSenha(conta.getContaUsuario().getAgencia(), conta.getContaUsuario().getConta(),
-				conta.getUsuario().getCpf());
+				conta.getUsuario().getCpf(), conta.getUsuario().getRg(), conta.getUsuario().getTelefone());
 		if (achada != null) {
 			conta.setSenha(achada.getSenha());
 		} else {

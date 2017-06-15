@@ -14,6 +14,16 @@
 		<br />
 		<p:commandButton value="Alterar dados de cadastro" action="atualizar"
 			immediate="true" />
+		<p:commandButton value="Encerrar conta" action="#{contaMB.remover}">
+			<p:confirm header="Confirmação"
+				message="Confirmar encerramento de conta?" icon="ui-icon-alert" />
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</p:commandButton>
 		<br />
 		<p:commandLink value="Sair" action="#{contaMB.sair}" />
 		<br />
@@ -55,7 +65,7 @@
 			</p:column>
 		</p:dataTable>
 		<br />
-		<p:commandButton value="Realizar depósito" action="conta"
+		<p:commandButton value="Realizar depósito" action="deposito"
 			immediate="true" />
 		<p:commandButton value="Realizar transferência" action="transacao"
 			immediate="true" />
