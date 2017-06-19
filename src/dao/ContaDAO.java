@@ -127,7 +127,8 @@ public class ContaDAO {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();
-		em.remove(conta);
+		Object c = em.merge(conta);
+		em.remove(c);
 		em.getTransaction().commit();
 		em.clear();
 		em.close();

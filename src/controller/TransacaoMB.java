@@ -98,5 +98,3 @@ public class TransacaoMB {
 	}
 
 }
-//42416
-//756440

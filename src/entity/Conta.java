@@ -50,7 +50,6 @@ public class Conta {
 	/**
 	 * @return the tipoConta
 	 */
-	//@NotEmpty
 	public String getTipoConta() {
 		return tipoConta;
 	}
