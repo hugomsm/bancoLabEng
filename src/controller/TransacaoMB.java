@@ -71,6 +71,7 @@ public class TransacaoMB {
 					contaDestino.setSaldo(contaDestino.getSaldo() + transacaoAtual.getValor());
 					c.setSaldo(c.getSaldo() - transacaoAtual.getValor());
 					ContaDAO.atualizar(contaDestino);
+					ContaDAO.atualizar(c);
 					transacaoAtual.setTipo("Transferência");
 					try {
 						transacaoAtual.setDataTransacao(sdf.parse(sdf.format((new Date()))));
@@ -79,6 +80,7 @@ public class TransacaoMB {
 						transacaoAtual.setDataTransacao(new Date());
 					}
 					TransacaoDAO.adicionar(transacaoAtual);
+					c.getTransacoes().add(transacaoAtual);
 				} else {
 					FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO, "Saldo insuficiente",
 							"Seu saldo não é suficiente para completar a transação");
@@ -99,6 +101,7 @@ public class TransacaoMB {
 	public String depositar() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Conta c = (Conta) context.getApplication().evaluateExpressionGet(context, "#{contaMB.conta}", Conta.class);
+		transacaoAtual.setContaOrigem(c);
 		c.setSaldo(c.getSaldo() + transacaoAtual.getValor());
 		ContaDAO.atualizar(c);
 		transacaoAtual.setAgenciaDestino(c.getContaUsuario().getAgencia());
