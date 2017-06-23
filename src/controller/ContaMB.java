@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -15,6 +17,7 @@ import entity.Conta;
 public class ContaMB {
 
 	private Conta conta = new Conta();
+	private List<Conta> contas = new ArrayList<Conta>();
 
 	/**
 	 * @return the conta
@@ -69,6 +72,24 @@ public class ContaMB {
 		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 	    ec.invalidateSession();
 	    ec.redirect(ec.getRequestContextPath() + "/login.xhtml");
+	}
+	
+	public void buscaDev(){
+		contas = ContaDAO.buscaDev();
+	}
+
+	/**
+	 * @return the contas
+	 */
+	public List<Conta> getContas() {
+		return contas;
+	}
+
+	/**
+	 * @param contas the contas to set
+	 */
+	public void setContas(ArrayList<Conta> contas) {
+		this.contas = contas;
 	}
 
 }

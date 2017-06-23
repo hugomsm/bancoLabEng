@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -134,4 +135,47 @@ public class ContaDAO {
 		em.close();
 		factory.close();
 	}
+	
+	public static List<Conta> buscaDev() {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
+		EntityManager em = factory.createEntityManager();
+		try {
+			Query query = em.createQuery("CREATE OR REPLACE PROCEDURE listarNumConta"+
+			  		 					 "BEGIN"+ 
+			  		 					 	"SELECT agencia, conta FROM conta"+
+			  		 					 	"WHERE saldo > 0;"+
+										 "END listarNumConta;");
+			query.executeUpdate();
+			em.clear();
+			em.close();
+			factory.close();
+			
+		}catch (Exception e) {
+			e.printStackTrace();			
+		}
+		
+		List<Conta> contas = runProc();
+		
+		return contas;	
+	}
+	
+	public static List<Conta> runProc(){
+		List<Conta> contas = new ArrayList<Conta>();
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("BANCO");
+		EntityManager em = factory.createEntityManager();
+		try {
+			Query query = em.createQuery("EXEC listarNumConta;");
+			contas = query.getResultList();
+			
+			em.clear();
+			em.close();
+			factory.close();
+			
+		}catch (Exception e) {
+			e.printStackTrace();			
+		}
+		
+		return contas;
+	}
+	
 }
